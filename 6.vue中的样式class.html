@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .blod{font-weight: bold}
+        .static{color: red}
+        .active{background-color: #000;}
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 :class="['blod','static', {active:flag} ]">ttttttttttttttttt</h1>
+        <button @click="turn">转换flag</button>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                flag:true
+            },
+            methods: {
+                turn(){
+                    this.flag = !this.flag;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

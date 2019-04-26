@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <label>id:<input type="text" v-model="id"></label>
+        <label>name:<input type="text" v-model="name"></label>
+        <button @click="add">添加</button>
+        <!-- 作为组件时，必须加上唯一key，key必须用v-bind绑定，key必须是number或者string -->
+        <p v-for="(item,index) in list" :key="item.id">
+            <input type="checkbox">{{item.id}}----{{item.name}}
+            <button @click="list.splice(index,1)">删除</button>
+        </p>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <!-- 黑马第36个视频的生命周期图，钩子函数 -->
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg:'test',
+            },
+            methods: {
+                show(){
+                    console.log(this.msg);
+                }
+            },
+            // 创建阶段
+            beforeCreate(){//实例被创建前调用,这时只有生命周期函数
+                console.log(this.msg);  //undefined
+                this.show();                
+            },
+            created(){//data和mehtods已经初始化
+            
+            },
+            beforeMount(){//模板已经在内存中编译成功，但还没渲染到页面上 ，执行时，页面中的元素还没替换过来
+
+            },
+            mounted(){//执行玩这个，vue实例已经完全创建出来了，完成初始化，用户已经可以看到渲染后的页面了
+
+            },
+            // 运行阶段（数据发生变化，才会运行）
+            beforeUpdate(){//数据已被改变，界面还没更新
+                
+            },
+            update(){//执行完后，页面已更新，渲染完成
+
+            },
+            beforeDestoy(){//页面上的data,methods，过滤器，指令都存在，未被销毁
+
+            },
+            destory(){//所有东西已销毁
+
+            }
+
+        })
+    </script>
+</body>
+
+</html>

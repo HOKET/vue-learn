@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <com1></com1>
+    </div>
+
+    <div id="temp2">
+        <h2>这是私有组件2</h2>
+    </div>
+
+
+    <script src="lib/vue.js"></script>
+    <script src="lib/jquery.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                groceryList: [
+                    { id: 0, text: '蔬菜' },
+                    { id: 1, text: '奶酪' },
+                    { id: 2, text: '随便其它什么人吃的东西' }
+                ]
+            },
+            components: {//定义私有组件，只能在app绑定的组件中使用
+                com1: {
+                    template: '<h1>私有组件</h1>'
+                },
+                com2: {
+                    template: '#temp2'
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

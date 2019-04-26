@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-bind用于绑定属性，数据从vue中获取 -->
+        <p v-bind:title="msg">鼠标放过来停留几秒</p>
+        <!-- v-bind可以简写成 : ,  内容可以写合法的js表达式-->
+        <p :title="msg + msg2">{{ msg + msg2 }}</p>
+
+        
+        <p>{{ msg3 }}</p>
+        <button v-on:click="reverseMsg">逆转消息</button><!-- v-on:click 缩写  @click-->
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "我是文字提示语",
+                msg2: "提示语2",
+                msg3: "逆转信息",
+            },
+            methods:{
+                reverseMsg: function(){
+                    this.msg3 = this.msg3.split("").reverse().join("")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <label>id:<input type="text" v-model="id"></label>
+        <label>name:<input type="text" v-model="name"></label>
+        <button @click="add">添加</button>
+        <!-- 作为组件时，必须加上唯一key，key必须用v-bind绑定，key必须是number或者string -->
+        <p v-for="(item,index) in list" :key="item.id">
+            <input type="checkbox">{{item.id}}----{{item.name}}
+            <button @click="list.splice(index,1)">删除</button>
+        </p>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                id: "",
+                name: "",
+                list: [
+                    { id: 1, name: "za1" },
+                    { id: 2, name: "za2" },
+                ],
+            },
+            methods: {
+                add() {
+                    if(!this.id || !this.name) return;
+                    for(let i=0;i<this.list.length;i++){
+                        if(this.id==this.list[i].id){
+                            alert("id已存在");
+                            return;
+                        }
+                    }
+                    this.list.unshift({ id: this.id, name: this.name });
+                    this.id = "";
+                    this.name = "";
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

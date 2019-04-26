@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 应对网速慢时，数据未加载出来，标签内的内容显示，发生闪烁，如{{msg}} */
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- html属于View层，下方的vue对象时Module层,vue是VM层 -->
+    <a href="./10.v-if和v-show.html">跳转</a>
+    <div id="app">
+        <!-- 应对网速慢时，数据未加载出来，标签内的内容显示，发生闪烁，如{{msg}} -->
+        <p v-cloak>---------{{ msg }}----------</p>
+
+        <!-- msg会覆盖div里面的内容 -->
+        <div v-text="msg">1234467567</div>
+        <!-- 可以识别html标签，如msg2的<h1> -->
+        <div v-html="msg2"></div>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"123",
+            msg2:"<h1>我是标签<h1>",
+        }
+    })
+    </script>
+</body>
+</html>

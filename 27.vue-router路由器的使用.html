@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 路由组件链接激活样式 */
+        .myActive,
+        .router-active-class {
+            background-color: green;
+            color: white;
+        }
+        /* 切换动画样式 */
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(140px)
+        }
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 需要加哈希# -->
+        <!-- <a href="#/login">登录</a>
+        <a href="#/register">注册</a> -->
+        <!-- router-link默认渲染为a标签,tag属性可以控制以什么标签展示 -->
+        <router-link to="/login" tag="span">登录</router-link>
+        <router-link to="/register">注册</router-link>
+        <!-- vue-router提供的组件标签 -->
+        <transition mode='out-in'>
+            <router-view></router-view>
+        </transition>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router.js"></script>
+    <script>
+        var login = Vue.component('login', {
+            template: "<h3>登录组件</h3>",
+        })
+        var register = Vue.component('register', {
+            template: "<h3>注册组件</h3>",
+        })
+        var routerObj = new VueRouter({
+            routes: [//路由，path为自定义的路由地址，component为组件对象
+                { path: "/", redirect: '/login' },//默认进入的页面为登录页面,redirect为重定向
+                { path: "/login", component: login },
+                { path: "/register", component: register },
+            ],
+            // 自定义激活激活组件class的样式类型,默认为router-active-class
+            linkActiveClass: "myActive",//这个名字可以直接套用bootstrap的类名
+        })
+        var vm = new Vue({
+            el: "#app",
+            // 将路由规则对象注册到vm上，用来监听URL地址的变化
+            router: routerObj
+        })
+    </script>
+</body>
+
+</html>

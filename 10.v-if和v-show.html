@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-if特点每次都是创建或删除元素,有较高的性能消耗 -->
+        <!-- 元素频繁切换不要使用v-if -->
+        <h1 v-if="flag">v-if</h1>
+        <!-- v-show特点是切换display:none属性的值，有较高的初始渲染消耗 -->
+        <!-- 元素永不显示不要使用v-show -->
+        <h1 v-show="flag">v-show</h1>
+        <button @click="flag=!flag">转换flag</button>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                flag:true
+            },
+            // methods: {
+            //     toggle(){
+            //         this.flag = !this.flag;
+            //     }
+            // }
+        })
+    </script>
+</body>
+
+</html>

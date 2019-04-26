@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ol>
+            <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+        </ol>
+        <com1></com1>
+    </div>
+
+    <script src="lib/vue.js"></script>
+    <script src="lib/jquery.min.js"></script>
+    <script>
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<div><li>{{ todo.text }}  {{count}}</li><button @click="addCount">+1</button></div>',
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                addCount() {
+                    this.count++
+                }
+            }
+        })
+        var app7 = new Vue({
+            el: '#app',
+            data: {
+                groceryList: [
+                    { id: 0, text: '蔬菜' },
+                    { id: 1, text: '奶酪' },
+                    { id: 2, text: '随便其它什么人吃的东西' }
+                ]
+            },
+        })
+    </script>
+
+    <!-- 第3种方式 -->
+    <!-- <div id="app">
+        <my-com3>
+
+        </my-com3>
+    </div>
+    <template id="temp1">
+        <div>
+            <h1>这是在外部定义的组件结构</h1>
+        </div>
+    </template>
+
+    <script>
+        Vue.component('my-com3', {
+            template: '#temp1'
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+
+            },
+        })
+    </script> -->
+</body>
+
+</html>

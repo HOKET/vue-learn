@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .inner {
+            height: 150px;
+            background-color: darkcyan;
+        }
+
+        .outer {
+            padding: 40px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        @click.stop阻止事件冒泡，冒泡指由子元素向父元素逐个触发
+        @click.capture阻止事件捕获，捕获指由父元素向子元素逐个触发
+        @click.prevent阻止事件默认行为，如a标签的href跳转，from表单的submit
+        @click.self触发点击元素的事件，冒泡捕获继续，当轮到设定这个值的元素时，该元素事件不触发，冒泡和捕获继续
+        @click.once只触发一次事件，之后点击不会触发
+     -->
+    <div id="app">
+        <!-- 事件连同prevent都只触发了一次
+        <a href="www.baidu.com" @click.prevent.once="linkClick"></a> -->
+
+        <!-- stop和self的区别 -->
+        <div class="outer" @click="outerHandler">
+            <div class="inner" @click="innerHandler">
+                <button type="button" @click.stop="btnHandler">按钮</button>
+            </div>
+        </div>
+        <!-- <div class="outer" @click="outerHandler">
+                <div class="inner" @click.self="innerHandler">
+                    <button type="button" @click="btnHandler">按钮</button>
+                </div>
+            </div> -->
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "我是文字提示语",
+            },
+            methods: {
+                linkClick() {
+                    console.log("触发a标签事件")
+                },
+                outerHandler() {
+                    console.log("触发outer")
+                },
+                innerHandler() {
+                    console.log("触发inner")
+                },
+                btnHandler() {
+                    console.log("触发btn")
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
